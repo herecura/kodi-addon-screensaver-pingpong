@@ -1,22 +1,22 @@
-# $Id$
 # Maintainer: BlackEagle <ike.devolder@gmail.com>>
 
 pkgname=kodi-addon-screensaver-pingpong
 epoch=1
-pkgver=1.1.0
+pkgver=2.1.0
+_codename=Leia
 pkgrel=1
 pkgdesc="Ping-pong screensaver for Kodi"
 arch=('x86_64')
-url='github.com/notspiff/screensaver.pingpong'
+url='https://github.com/xbmc/screensaver.pingpong'
 license=('GPL')
 groups=('kodi-addons' 'kodi-addons-screensaver')
 depends=('kodi')
 makedepends=('git' 'cmake' 'kodi-dev')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/notspiff/screensaver.pingpong/archive/v$pkgver.tar.gz")
-sha512sums=('304bb57cb4d5a9807ced12ad1503f7a1be0f57b2ccc8a024651dcdba83ee17fb1b3adde1799b62d41c0ad2fc75ec0757dc06492c9b3adb5b89e6ef77a63856b7')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/xbmc/screensaver.pingpong/archive/$pkgver-$_codename.tar.gz")
+sha512sums=('883bb1e3ed8632943d301b02db952ffd7f00d039d4827a08cf601d7d5809df076a4fd8b70a3242be1f715505301175a8cd0bd15bb4c850fe6baab4e3458205a9')
 
 build() {
-    cd "screensaver.pingpong-$pkgver"
+    cd "screensaver.pingpong-$pkgver-$_codename"
 	cmake \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -26,7 +26,7 @@ build() {
 }
 
 package() {
-    cd "screensaver.pingpong-$pkgver"
+    cd "screensaver.pingpong-$pkgver-$_codename"
 	make DESTDIR="$pkgdir/" install
 }
 
