@@ -4,7 +4,7 @@ pkgname=kodi-addon-screensaver-pingpong
 epoch=1
 pkgver=2.1.1
 _codename=Leia
-pkgrel=1
+pkgrel=2
 pkgdesc="Ping-pong screensaver for Kodi"
 arch=('x86_64')
 url='https://github.com/xbmc/screensaver.pingpong'
@@ -17,16 +17,17 @@ sha512sums=('388b5c2980c6001650b0147e21cf7d3baacc78f1d94b82b1f96b12a5ea5c420808a
 
 build() {
     cd "screensaver.pingpong-$pkgver-$_codename"
-	cmake \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DBUILD_SHARED_LIBS=1 \
-		-DUSE_LTO=1
-	make
+    cmake \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=1 \
+        -DUSE_LTO=1 \
+        .
+    make
 }
 
 package() {
     cd "screensaver.pingpong-$pkgver-$_codename"
-	make DESTDIR="$pkgdir/" install
+    make DESTDIR="$pkgdir/" install
 }
 
